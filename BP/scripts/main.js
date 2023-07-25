@@ -7,7 +7,7 @@ world.afterEvents.itemUse.subscribe((e) => {
   /** @type {Player} */
   const player = source
 
-  if (!(player.isSneaking && itemStack.typeId === 'minecraft:book')) return
+  if (!(player.isSneaking && itemStack.typeId === 'xp_book:xp_book')) return
 
   const selectedSlot = player.selectedSlot
   /** @type {import('@minecraft/server').EntityInventoryComponent} */
@@ -20,12 +20,12 @@ world.afterEvents.itemUse.subscribe((e) => {
   const xps = new ExperienceSystem()
   xps.addXP(player.getTotalXp())
 
-  const xp = +itemStack
+  const xpLore = itemStack
     .getLore()
     .filter((item) => item.startsWith('XP'))
     .shift()
-    .replace('XP ', '')
 
+  const xp = +(xpLore || '0').replace('XP ', '')
   // fetch
   if (xp) {
     player.addExperience(xp)

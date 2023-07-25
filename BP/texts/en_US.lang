@@ -1,0 +1,5 @@
+pack.name=Experience Book
+pack.description=Toring up your hard-earned experience
+
+## item
+item.xp_book:xp_book.name=Experience Book

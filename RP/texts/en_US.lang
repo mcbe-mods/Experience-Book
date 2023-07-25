@@ -1,0 +1,5 @@
+pack.name=Experience Book
+pack.description=This is the resource pack for the Experience Book
+
+## item
+item.xp_book:xp_book.name=Experience Book

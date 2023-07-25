@@ -2,8 +2,8 @@ const { existsSync, mkdirSync } = require('fs')
 const { exec } = require('child_process')
 
 const dist = './dist'
-const filesToPack = ['./pack_icon.png', './manifest.json', 'LICENSE', './scripts']
-const outputZipFile = `${dist}/Hit_Point_v.mcpack`
+const filesToPack = ['LICENSE', './BP', './RP']
+const outputZipFile = `${dist}/Experience_Book_v1.0.0.mcpack`
 
 if (!existsSync(dist)) mkdirSync(dist)
 

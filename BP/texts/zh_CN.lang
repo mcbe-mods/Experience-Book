@@ -1,0 +1,5 @@
+pack.name=经验书
+pack.description=积累来之不易的经验
+
+## item
+item.xp_book:xp_book.name=经验书
