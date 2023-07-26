@@ -1,10 +1,10 @@
-import { world, Player } from '@minecraft/server'
-import ExperienceSystem from './ExperienceSystem'
+import { world } from '@minecraft/server'
+import Experience from './Experience'
 
 world.afterEvents.itemUse.subscribe((e) => {
   const { source, itemStack } = e
 
-  /** @type {Player} */
+  /** @type {import('@minecraft/server').Player} */
   const player = source
 
   if (!(player.isSneaking && itemStack.typeId === 'xp_book:xp_book')) return
@@ -17,7 +17,7 @@ world.afterEvents.itemUse.subscribe((e) => {
   const XP_RANFE_MAX = 2147483647
   const XP_RANFE_MIN = -(XP_RANFE_MAX + 1) // -2147483648
 
-  const xps = new ExperienceSystem()
+  const xps = new Experience()
   xps.addXP(player.getTotalXp())
 
   const xpLore = itemStack
@@ -34,7 +34,7 @@ world.afterEvents.itemUse.subscribe((e) => {
   }
 
   // storage
-  currentSlot.setLore([`XP ${xps.getTotalXP()}`, `Level ${xps.level}`])
+  currentSlot.setLore([`XP ${xps.getTotalXP()}`, `Level ${xps.getLevel()}`])
   player.addExperience(XP_RANFE_MIN)
   player.addLevels(XP_RANFE_MIN)
 })
