@@ -1,5 +1,35 @@
 {
+  "name": "quick-start",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "preinstall": "node scripts/preinstall.js",
+    "dev": "tsc && vite build --watch",
+    "clear": "node scripts/clear.js",
+    "copy": "node scripts/copy.js",
+    "package": "node scripts/package.js",
+    "prebuild": "node scripts/build.js",
+    "build": "npm run clear && npm run copy && tsc && npm run prebuild && npm run package",
+    "lint": "eslint src && prettier --check src",
+    "lint:fix": "eslint --fix src && prettier --check --write src"
+  },
+  "devDependencies": {
+    "@minecraft/server": "1.4.0-beta.1.20.10-stable",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@types/fs-extra": "^11.0.1",
+    "@types/node": "^20.4.5",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.46.0",
+    "fs-extra": "^11.1.1",
+    "prettier": "^3.0.0",
+    "rollup": "^3.27.0",
+    "tslib": "^2.6.1",
+    "typescript": "^5.0.2"
+  },
   "dependencies": {
-    "@minecraft/server": "^1.4.0-beta.1.20.10-stable"
+    "@mcbe-mods/utils": "^0.0.3"
   }
 }

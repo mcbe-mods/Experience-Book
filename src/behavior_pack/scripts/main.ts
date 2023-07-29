@@ -1,17 +1,16 @@
-import { world } from '@minecraft/server'
-import Experience from './Experience'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { EntityInventoryComponent, Player, world } from '@minecraft/server'
+import { Experience } from '@mcbe-mods/utils'
 
 world.afterEvents.itemUse.subscribe((e) => {
   const { source, itemStack } = e
 
-  /** @type {import('@minecraft/server').Player} */
-  const player = source
+  const player = source as Player
 
   if (!(player.isSneaking && itemStack.typeId === 'xp_book:xp_book')) return
 
   const selectedSlot = player.selectedSlot
-  /** @type {import('@minecraft/server').EntityInventoryComponent} */
-  const inventory = player.getComponent('inventory')
+  const inventory = player.getComponent('inventory') as EntityInventoryComponent
   const currentSlot = inventory.container.getSlot(selectedSlot)
 
   const XP_RANFE_MAX = 2147483647
