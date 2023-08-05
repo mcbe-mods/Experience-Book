@@ -3,7 +3,7 @@
 Toring up your hard-earned experience
 
 <p align="center">
-<img src="Logo.png" style="width: 40%;">
+  <img src="images/Logo.png" style="width: 40%;">
 </p>
 
 ## Download
@@ -17,7 +17,11 @@ To download, you need to go to the GitHub repository [releases](https://github.c
 Right-click on an experience book while sneaking to store it.
 
 <p align="center">
-<img src="recipe.png" style="width: 80%;">
+  <img src="images/recipe.png" style="width: 80%;">
+</p>
+
+<p align="center">
+  <img src="images/animation.gif" style="width: 80%;">
 </p>
 
 ## Debugger
