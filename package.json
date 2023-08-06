@@ -9,8 +9,8 @@
     "clear": "node scripts/clear.js",
     "copy": "node scripts/copy.js",
     "package": "node scripts/package.js",
-    "prebuild": "node scripts/build.js",
-    "build": "npm run clear && npm run copy && tsc && npm run prebuild && npm run package",
+    "build": "node scripts/build.js",
+    "builds": "npm run clear && npm run copy && tsc && npm run build && npm run package",
     "lint": "eslint src && prettier --check src",
     "lint:fix": "eslint --fix src && prettier --check --write src"
   },

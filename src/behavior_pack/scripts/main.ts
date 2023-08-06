@@ -2,6 +2,9 @@
 import { EntityInventoryComponent, Player, world } from '@minecraft/server'
 import { Experience } from '@mcbe-mods/utils'
 
+const LEVEL_30_XP = 1395
+
+// eslint-disable-next-line max-statements
 world.afterEvents.itemUse.subscribe((e) => {
   const { source, itemStack } = e
 
@@ -13,27 +16,33 @@ world.afterEvents.itemUse.subscribe((e) => {
   const inventory = player.getComponent('inventory') as EntityInventoryComponent
   const currentSlot = inventory.container.getSlot(selectedSlot)
 
+  const playerCurrentXP = player.getTotalXp()
   const XP_RANFE_MAX = 2147483647
   const XP_RANFE_MIN = -(XP_RANFE_MAX + 1) // -2147483648
-
-  const xps = new Experience()
-  xps.addXP(player.getTotalXp())
 
   const xpLore = itemStack
     .getLore()
     .filter((item) => item.startsWith('XP'))
     .shift()
 
-  const xp = +(xpLore || '0').replace('XP ', '')
+  const fetchXP = +(xpLore || '0').replace('XP ', '')
   // fetch
-  if (xp) {
-    player.addExperience(xp)
+  if (fetchXP) {
+    player.addExperience(fetchXP)
     currentSlot.setLore(['XP 0', 'Level 0'])
     return
   }
 
   // storage
-  currentSlot.setLore([`XP ${xps.getTotalXP()}`, `Level ${xps.getLevel()}`])
+  const xp = playerCurrentXP >= LEVEL_30_XP ? LEVEL_30_XP : playerCurrentXP
+
   player.addExperience(XP_RANFE_MIN)
   player.addLevels(XP_RANFE_MIN)
+  const playerXP = new Experience()
+  playerXP.addXP(xp)
+  currentSlot.setLore([`XP ${playerXP.getTotalXP()}`, `Level ${playerXP.getLevel()}`])
+
+  const _xp = playerCurrentXP - LEVEL_30_XP
+  const endXP = _xp > 0 ? _xp : 0
+  player.addExperience(endXP)
 })

@@ -28,7 +28,7 @@ if (existsSync(BPPath)) chokidar.watch(BPPath).on('change', throttle(handler))
 if (existsSync(RPPath)) chokidar.watch(RPPath).on('change', throttle(handler))
 
 function handler() {
-  spawnSync(NPM, ['run', 'build'])
+  spawnSync(NPM, ['run', 'builds'], { encoding: 'utf-8', stdio: 'inherit' })
   if (game === 'game') {
     if (existsSync(distBPPath)) {
       const path = join(development_behavior_packs, '_dev_behavior_pack')

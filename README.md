@@ -13,6 +13,10 @@ To download, you need to go to the GitHub repository [releases](https://github.c
 ## Usage
 
 > required enable Beta API
+>
+>Each experience book can only store up to 30 levels of experience (1395 experience points)
+>
+>For more information about experience points, please see: https://minecraft.fandom.com/wiki/Experience#Leveling_up
 
 Right-click on an experience book while sneaking to store it.
 
