@@ -17,8 +17,8 @@ world.afterEvents.itemUse.subscribe((e) => {
   const currentSlot = inventory.container.getSlot(selectedSlot)
 
   const playerCurrentXP = player.getTotalXp()
-  const XP_RANFE_MAX = 2147483647
-  const XP_RANFE_MIN = -(XP_RANFE_MAX + 1) // -2147483648
+  const XP_RANFE_MAX = 9999999
+  const XP_RANFE_MIN = -XP_RANFE_MAX
 
   const xpLore = itemStack
     .getLore()
