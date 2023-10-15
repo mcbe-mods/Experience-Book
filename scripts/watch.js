@@ -1,11 +1,12 @@
 /* eslint-disable camelcase */
-import { existsSync, rmSync } from 'fs'
+import { existsSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { join } from 'path'
 import { spawnSync } from 'child_process'
 import chokidar from 'chokidar'
 import fse from 'fs-extra'
-const { copySync } = fse
+import { emptyDirSync } from './emptyDir.js'
+const { copySync, ensureFileSync, writeJSONSync } = fse
 
 const { LOCALAPPDATA } = process.env
 const [game] = process.argv.slice(2)
@@ -24,20 +25,41 @@ const development_resource_packs = join(gamePath, 'development_resource_packs')
 
 const NPM = process.platform === 'win32' ? 'npm.cmd' : 'npm'
 
+const launchJson = {
+  version: '0.2.0',
+  configurations: [
+    {
+      type: 'minecraft-js',
+      request: 'attach',
+      name: 'Attach to Minecraft',
+      mode: 'listen',
+      localRoot: '${workspaceFolder}/scripts',
+      host: 'localhost',
+      port: 19144
+    }
+  ]
+}
+
 if (existsSync(BPPath)) chokidar.watch(BPPath).on('change', throttle(handler))
 if (existsSync(RPPath)) chokidar.watch(RPPath).on('change', throttle(handler))
 
+handler()
 function handler() {
   spawnSync(NPM, ['run', 'builds'], { encoding: 'utf-8', stdio: 'inherit' })
   if (game === 'game') {
     if (existsSync(distBPPath)) {
       const path = join(development_behavior_packs, '_dev_behavior_pack')
-      rmSync(path, { force: true, recursive: true })
+      const debuggerPath = join(path, '.vscode', 'launch.json')
+      emptyDirSync(path, { ignore: ['.vscode'] })
       copySync(distBPPath, path)
+      if (!existsSync(debuggerPath)) {
+        ensureFileSync(debuggerPath)
+        writeJSONSync(debuggerPath, launchJson)
+      }
     }
     if (existsSync(distRPPath)) {
       const path = join(development_resource_packs, '_dev_resource_pack')
-      rmSync(path, { force: true, recursive: true })
+      emptyDirSync(path)
       copySync(distRPPath, path)
     }
   }
