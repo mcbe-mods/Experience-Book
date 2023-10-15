@@ -65,7 +65,7 @@ function handler() {
   }
 }
 
-function throttle(callback, wait = 1000) {
+function throttle(callback, wait = 3000) {
   let pre = 0
   return function () {
     let now = new Date()
