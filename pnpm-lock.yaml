@@ -11,8 +11,8 @@ dependencies:
 
 devDependencies:
   '@minecraft/server':
-    specifier: 1.6.0-beta.1.20.30-stable
-    version: 1.6.0-beta.1.20.30-stable
+    specifier: 1.6.0
+    version: 1.6.0
   '@rollup/plugin-node-resolve':
     specifier: ^15.1.0
     version: 15.1.0(rollup@3.27.0)
@@ -127,8 +127,14 @@ packages:
     resolution: {integrity: sha512-YRlHla64vel/kKLaG3do00tAxgV6uorHRPm2zgDSWXB4+VyQJdYYaeuJ5j+IYEvrtsGNTJEN+olzW25EqZT9bg==}
     dev: false
 
-  /@minecraft/server@1.6.0-beta.1.20.30-stable:
-    resolution: {integrity: sha512-hvRjxbI7cl7LVAv+wmw253O6IHFUVBEMvTl+FJLnUaQv9f/JkGBaVDKgyH0yR7G1SMgVLRoQIA5CM8IZWYDHew==}
+  /@minecraft/common@1.0.0:
+    resolution: {integrity: sha512-7WObMvUWaS2zBVBZwc150Kd/apLUYa5tx2fvkLe3JoviEKm7QjZNLghZV9sV/STXmd9k3HBKTKvRyGdNaTIVBA==}
+    dev: true
+
+  /@minecraft/server@1.6.0:
+    resolution: {integrity: sha512-V/jt0tY5aFnOPriFqOdWwdBSX+Pg/B/VGEynwZuST5yZLuBfJ1xb3888o1j//npFUbjv5iLQdm19ZbHscUrf5w==}
+    dependencies:
+      '@minecraft/common': 1.0.0
     dev: true
 
   /@nodelib/fs.scandir@2.1.5:

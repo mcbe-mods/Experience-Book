@@ -12,6 +12,8 @@ To download, you need to go to the GitHub repository [releases](https://github.c
 
 ## Usage
 
+> Theoretically, if you download [Experience-Book-1.20.4-v1.0.3.mcaddon](https://github.com/mcbe-mods/Experience-Book/releases/tag/v1.0.3) it should work correctly in all future releases greater than or equal to `1.20.40`, since it uses the `Script API` of the `1.6.0` official release, and is no longer the `Script API Beta`.
+
 > required enable Beta API
 >
 >Each experience book can only store up to 30 levels of experience (1395 experience points)
